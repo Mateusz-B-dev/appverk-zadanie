@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 appTranslate="home.title"></h4>
+            <div class="d-flex align-items-center">
+              <app-language-selector class="me-3"></app-language-selector>
+              <button class="btn btn-danger" (click)="logout()">
+                {{ 'home.logout' | translate }}
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            @if (loading) {
+                <div class="text-center">
+                  <p>{{ 'home.loading' | translate }}</p>
+                </div>
+              }
+    
+              <!-- Błąd -->
+              @if (errorMessage) {
+                <div class="alert alert-danger">
+                  {{ 'home.error' | translate }}
+                </div>
+              }
+            
+            @defer (when !loading && user) {
+                <div class="user-info">
+                  <h5>{{ 'home.user.info' | translate }}</h5>
+                  <ul class="list-group mt-3">
+                    <li class="list-group-item">
+                      {{ 'home.user.id' | translate }}: {{ user?.id }}
+                    </li>
+                    <li class="list-group-item">
+                      {{ 'home.user.name' | translate }}: {{ user?.name }}
+                    </li>
+                    <li class="list-group-item">
+                      {{ 'home.user.email' | translate }}: {{ user?.email }}
+                    </li>
+                    <li class="list-group-item">
+                      {{ 'home.user.role' | translate }}: {{ user?.role }}
+                    </li>
+                  </ul>
+                </div>
+              }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

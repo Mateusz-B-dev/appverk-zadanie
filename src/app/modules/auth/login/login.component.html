@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h4 class="text-center mb-0" appTranslate="login.title"></h4>
+          <app-language-selector></app-language-selector>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <app-text-input
+              [label]="'login.email' | translate"
+              formControlName="email"
+              [placeholder]="'login.email.placeholder' | translate"
+              type="email"
+            ></app-text-input>
+            
+            <app-text-input
+              [label]="'login.password' | translate"
+              formControlName="password"
+              [placeholder]="'login.password.placeholder' | translate"
+              type="password"
+            ></app-text-input>
+            
+            @if (errorMessage) {
+              <div class="alert alert-danger mt-3">
+                {{ 'login.error' | translate }}
+              </div>
+            }
+            
+            <div class="text-center mt-4">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="loginForm.invalid"
+              >
+                {{ 'login.submit' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
